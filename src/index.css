@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+  section{
+      @apply py-[75px];
+   }
+  }
+
+  @layer utilities{
+    @variants responsive{
+        .no-scrollbar::-webkit-scrollbar{
+            display:none;
+        }
+    }
+  }
+  
+  @layer components{
+      .container{
+          @apply max-w-full w-[1440px]  mx-auto
+      }
+
+  }
+  
+  .heading{
+      @apply text-[44px] leading-[54px] font-[700];
+  }
+  
+  .text_para{
+      @apply text-[18px] leading-[30px] font-[400] mt-[18px]
+  }
+  
+  @media only screen and (max-width: 1024px){
+      .container{
+          @apply w-full;
+      }
+      section{
+          @apply py-[35px]
+      }
+  }
+
+  @media only screen and (min-width: 820px){
+      .staff{
+        @apply grid-cols-2
+      }
+  }
+
+  @media only screen and (max-width: 768px){
+    .staff{
+        @apply grid-cols-2 gap-[3rem];
+    }
+    .heading{
+        @apply text-[26px] leading-[36px]
+    }
+  }
+
+  /* display: grid placeitems center */
+
+
+  /* target the active bullet */
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: blue;
+    opacity: 1;
+  }
+  
+  /* target all bullets */
+  .swiper-pagination-bullet {
+    background-color: red;
+    opacity: 1;
+  }
+ 
+/*   
+  /* @media only screen and (max-width: 768px){
+      .heading{
+          @apply text-[26px] leading-[36px]
+      }
+      .text_para{
+          @apply text-[16px] leading-7 mt-3
+      }
+  } */
+
+  
