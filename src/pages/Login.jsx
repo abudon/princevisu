@@ -41,8 +41,7 @@ const navigate = useNavigate()
             // Check if the request was successful (status code 200)
             if (response.status === 200) {
                 // Return the user data from the response
-
-                return response.data.user;
+                return response.data;
             } else {
                 // If the request was not successful, log an error and return null
                 console.error('Failed to fetch user:', response.statusText);

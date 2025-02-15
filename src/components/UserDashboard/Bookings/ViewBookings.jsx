@@ -12,10 +12,7 @@ export const ViewBookings = () => {
             try {
                 const response = await axios.get(`${server_url}/booking-list/${user_id}`)
                 if (response.status===200){
-
-                    console.log(response.data.bookingList)
-                    console.log("successful")
-                    setRows(response.data.bookingList)
+                    setRows(response.data.bookings)
                 }
 
             }catch (e) {
@@ -24,7 +21,7 @@ export const ViewBookings = () => {
         }
 
         fetch_booking()
-    }, [user_id])
+    }, [user_id, server_url])
 
     return (
         <div className="flex h-screen bg-gray-100 mb-10">

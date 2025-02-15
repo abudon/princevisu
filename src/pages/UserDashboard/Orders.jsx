@@ -19,7 +19,7 @@ function Orders() {
         const data = response.data;
         const mappedData = data.map((item) => ({
           id: item.id,
-          img: `${server_url}${item.downloadLink}`,
+          img: item.url,
           filename: item.fileName,
         }));
         setOrderImage(mappedData);
@@ -29,7 +29,7 @@ function Orders() {
     };
 
     fetch_order()
-  }, [user_id]);
+  }, [user_id, server_url]);
 
 
 

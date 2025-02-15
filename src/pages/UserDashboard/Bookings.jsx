@@ -1,8 +1,6 @@
 import React from 'react'
 import {Outlet, useNavigate} from "react-router-dom";
 import Button from "../../components/UI/Button";
-import {PiListChecks} from "react-icons/pi";
-import {MdOutlineCancel} from "react-icons/md";
 import {BiBookAdd} from "react-icons/bi";
 import {Bookmark} from "@mui/icons-material";
 

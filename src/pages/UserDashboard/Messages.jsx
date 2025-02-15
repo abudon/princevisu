@@ -1,13 +1,8 @@
-import { useState } from "react";
 import Notification from "../../components/UserDashboard/Messages/MessagesComponent";
 
 function Messages() {
   const user_id = JSON.parse(localStorage.getItem("client")).id
-    console.log(user_id)
 
-  function handleOnEnter(text) {
-    console.log("enter", text);
-  }
   return (
     <section className=' sm:p-10 md:px-20'>
       {/* Heading */}

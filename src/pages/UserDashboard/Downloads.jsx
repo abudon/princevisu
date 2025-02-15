@@ -7,7 +7,6 @@ import "swiper/css/navigation";
 import {useEffect, useState} from "react";
 import {Pagination,} from "@mui/material";
 import axios from "axios";
-// import error from "../../components/UI/Error";
 
 function Downloads() {
 
@@ -24,13 +23,8 @@ function Downloads() {
             try {
                 const response = await axios.get(`${server_url}/download/${user_id}`);
                 const data = response.data;
-                const mappedData = data.map((image) => ({
-                    id: image.id,
-                    img: `${server_url}${image.downloadLink}`,
-                    filename: image.fileName,
-                }));
-                setImages(mappedData);
-                setSelectedImage(mappedData[0].img);
+                setImages(data);
+                setSelectedImage(data[1].url);
             } catch (error) {
                 console.error("Error fetching images:", error);
             }
@@ -54,7 +48,7 @@ function Downloads() {
 
         fetchData();
         fetchUser(user_id);
-    }, [user_id]);
+    }, [user_id, server_url]);
 
     // Use the function to download an image when the button is clicked
 
@@ -110,15 +104,12 @@ function Downloads() {
 
 
 
-
-
-
     const handleImageSelect = (image) => {
     setSelectedImage(image);
   };
 
   const handlePaginationChange = (_, value) => {
-    setSelectedImage(images[value - 1].img);
+    setSelectedImage(images[value - 1].url);
 
   };
 
@@ -140,18 +131,20 @@ function Downloads() {
       </p>
 
       {/* Image List */}
-      <div className=' md:flex'>
+      <div className=' md:flex '>
         <Swiper
           navigation={true}
           modules={[Navigation]}
           loop={true}
-          className='max-w-3xl mx-auto w-auto'
+          className='max-w-3xl mx-auto'
           spaceBetween={5}
-          slidesPerView={5}
+          slidesPerView={3}
+          centeredSlides={true}
+          scrollbar={{draggable: true}}
         >
           {images.map((item) => (
-            <SwiperSlide key={item.img}>
-              <DownloadSwipeItem onImageSelect={handleImageSelect} {...item} />
+            <SwiperSlide key={item.id}>
+              <DownloadSwipeItem onImageSelect={handleImageSelect} img={item.url} />
             </SwiperSlide>
           ))}
         </Swiper>

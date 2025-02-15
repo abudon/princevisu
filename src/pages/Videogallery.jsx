@@ -16,13 +16,13 @@ const Videogallery = () => {
   const user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
 
-  // VARIABLE INITIALIZATION AND DECLEARATION
+  // VARIABLE INITIALIZATION AND DECLARATION
   const [file, setFile] = useState(null)
   const [category, setCategory] = useState('wedding');
   const [filteredImages, setFilteredImages] = useState([]);
   const [media, setMedia] = useState([]);
-  const categoryStats = ['wedding','gallery','all']
-    const server_url = process.env.REACT_APP_SERVER_API_URL
+  const categoryStats = ['wedding','gallery','all'];
+  const server_url = process.env.REACT_APP_SERVER_API_URL
 
 
 
@@ -33,7 +33,7 @@ const Videogallery = () => {
         const fetchMedia = async () => {
             try {
                 const response = await axios.get(`${server_url}/gallery`);
-                const fetchedGalleryItems = response.data.galleryItems;
+                const fetchedGalleryItems = response.data.gallery;
                 const arrangedGalleryItems = fetchedGalleryItems.filter(item => {
                     const  fileExtension = item.image_name.split('.').pop().toLowerCase()
                     return ['mp4', 'mkv','mov','avi'].includes(fileExtension)
@@ -45,6 +45,7 @@ const Videogallery = () => {
                     category: categoryStats[Math.floor(Math.random() * categoryStats.length)],
                     title: item.image_name
                 }))
+                console.log(arrangedGalleryItems);
                 setMedia(arrangedGalleryItems)
 
             }catch (e) {

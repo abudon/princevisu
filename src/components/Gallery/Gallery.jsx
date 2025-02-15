@@ -28,7 +28,8 @@ const Gallery = () => {
         const fetchGallery = async () => {
        try {
            const response = await axios.get(`${server_url}/gallery`);
-           const fetchedGalleryItems = response.data.galleryItems;
+           console.log(response)
+           const fetchedGalleryItems = response.data.gallery;
            setFinalDispaly(fetchedGalleryItems.length)
            const arrangedGalleryItems = fetchedGalleryItems.filter(item => {
                const  fileExtension = item.image_name.split('.').pop().toLowerCase()

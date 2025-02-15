@@ -23,9 +23,7 @@ const Notification = (props)=> {
     const fetch_message = async ()=> {
       try {
         const response = await axios.get(`${server_url}/notifications/${userId}`)
-        console.log(response)
         if (response.status === 200) {
-          console.log("message successful")
           const data = response.data
           const mappedData = data.map((item) => ({
             sender: {

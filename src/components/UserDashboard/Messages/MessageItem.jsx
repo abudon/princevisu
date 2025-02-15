@@ -16,7 +16,7 @@ function MessageItem({ message, sender, user, time }) {
       </div>
       {/* Message */}
       <div
-        className={`bg-white w-11/12 sm:w-9/12 p-4 border border-stone-300 ${
+        className={`bg-white w-11/12 sm:w-9/12 p-4 rounded border border-stone-300 ${
           user ? "" : "md:translate-x-8"
         }`}
       >

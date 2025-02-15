@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {Datepicker, Label, TextInput} from "flowbite-react";
 import axios from "axios";
 
@@ -7,14 +7,11 @@ export const AddBookings = () => {
     const user_id = JSON.parse(localStorage.getItem('client')).id
     const server_url = process.env.REACT_APP_SERVER_API_URL
 
+
     const handleOnChange = (event) => {
         setBookingItems({...bookingItems, [event.target.name]: event.target.value})
-        console.log(bookingItems)
     }
-    const handleSubmit = (event) =>{
-         send_booking();
-        setBookingItems({});
-    }
+
 
     const send_booking = async () => {
         try {
@@ -37,25 +34,28 @@ export const AddBookings = () => {
         }
     }
 
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        send_booking().then(()=>setBookingItems({}));
+        document.querySelectorAll("input").forEach((input) => (input.value = ""));
+    }
+
     return (
         <div className="flex h-screen bg-gray-100 mb-10" style={{
             marginBottom: "400px"
         }}>
             <form onSubmit={handleSubmit}>
-            <div className="m-auto">
-                <div>
-
-
-                    <div className="mt-5 bg-white rounded-lg shadow">
-
-                        <div className="flex">
-                            <div className="flex-1 py-5 pl-5 overflow-hidden">
-                                <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                <div className="m-auto">
+                    <div>
+                        <div className="mt-5 bg-white rounded-lg shadow">
+                            <div className="flex">
+                                <div className="flex-1 py-5 pl-5 overflow-hidden">
+                                    <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                      xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                      viewBox="0 0 24 24">
-                                    <path
+                                        <path
                                         d="M7.833 2c-.507 0-.98.216-1.318.576A1.92 1.92 0 0 0 6 3.89V21a1 1 0 0 0 1.625.78L12 18.28l4.375 3.5A1 1 0 0 0 18 21V3.889c0-.481-.178-.954-.515-1.313A1.808 1.808 0 0 0 16.167 2H7.833Z"/>
-                                </svg>
+                                    </svg>
 
                                 <h1 className="inline text-2xl font-semibold leading-none">Book Now</h1>
                             </div>

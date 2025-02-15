@@ -8,14 +8,9 @@ import 'aos/dist/aos.css';
 
 import {AiOutlineMenu,
        AiOutlineClose,
-  AiOutlineTwitter,
-  AiOutlineInstagram,
-  AiOutlineFacebook,
-  AiOutlineLinkedin,
   } from 'react-icons/ai'
 import { FaHandPeace } from 'react-icons/fa'
-// import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { headerLinks, headerSocials } from "./navLinksData";
+import { headerSocials } from "./navLinksData";
 import logoMenu from "../../assets/images/logo-ct.png";
 import face from "../../assets/images/default.png"
 import {Avatar, Button} from "flowbite-react";
@@ -24,8 +19,6 @@ const Header = () => {
 
 
   const user = JSON.parse(localStorage.getItem('client'))
-
-  console.log(user)
   const Headerlinks =[
     {
       path: '/home',
