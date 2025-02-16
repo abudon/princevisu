@@ -20,8 +20,9 @@ function Orders() {
         const mappedData = data.map((item) => ({
           id: item.id,
           img: item.url,
-          filename: item.fileName,
-        }));
+          filename: item.filename,
+        })).filter(item => !item.filename.includes('.mp4'));
+        console.log(mappedData)
         setOrderImage(mappedData);
       } catch (error) {
         console.error("Error fetching images:", error);

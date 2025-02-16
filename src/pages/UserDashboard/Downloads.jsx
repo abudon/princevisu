@@ -24,7 +24,7 @@ function Downloads() {
                 const response = await axios.get(`${server_url}/download/${user_id}`);
                 const data = response.data;
                 setImages(data);
-                setSelectedImage(data[1].url);
+                setSelectedImage(data[0]);
             } catch (error) {
                 console.error("Error fetching images:", error);
             }
@@ -144,7 +144,7 @@ function Downloads() {
         >
           {images.map((item) => (
             <SwiperSlide key={item.id}>
-              <DownloadSwipeItem onImageSelect={handleImageSelect} img={item.url} />
+              <DownloadSwipeItem onImageSelect={handleImageSelect} img={item}/>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -154,11 +154,22 @@ function Downloads() {
       {
           selectedImage && (
         <div className='max-w-3xl mx-auto md:mt-8'>
-          <img
-            className='w-full object-cover'
-            src={selectedImage}
-            alt='preview'
-          />
+            {
+                selectedImage.filename.split('.').pop() === 'mp4' ? (
+                    <video
+                        title={selectedImage.filename}
+                        className='w-full object-cover'
+                        src={selectedImage.url} controls={true}></video>
+                ): (
+                    <img
+                        className='w-full object-cover'
+                        src={selectedImage.url}
+                        alt={selectedImage.filename}
+                    />
+                )
+            }
+
+
             <div className='mt-[30px] md:mt-[20px] lg:mt-[1rem] items-center ml-[-3px] md:ml-1 text-center'>
                 {
                     //
